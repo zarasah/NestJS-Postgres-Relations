@@ -15,8 +15,8 @@ export class Product {
     @Column({ type: 'float' })
     price: number;
 
-    @ManyToOne(() => Category, category => category.products)
-    @JoinColumn({ name: "category_id" })
+    @ManyToOne(() => Category, category => category.products, {eager: true})
+    @JoinColumn({ name: "category_id", referencedColumnName: "id" })
     category: Category;
 
     @CreateDateColumn()
