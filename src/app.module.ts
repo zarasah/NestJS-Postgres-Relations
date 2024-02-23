@@ -7,6 +7,8 @@ import { AuthorModule } from './author/author.module';
 import { BookModule } from './book/book.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { APP_FILTER } from '@nestjs/core';
+import { GlobalExceptionFilter } from './common/exceptions/exception.filter';
 
 @Module({
   imports: [
@@ -31,6 +33,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     })
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_FILTER,
+      useClass: GlobalExceptionFilter
+    }
+  ],
 })
 export class AppModule {}
