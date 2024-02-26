@@ -6,17 +6,17 @@ export class Book {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ unique: true })
     title: string;
 
     @Column({ nullable: true })
-    language: string;
+    language?: string;
 
     @Column({ nullable: true })
-    pageCount: number;
+    pageCount?: number;
 
     @Column({ nullable: true })
-    description: string;
+    description?: string;
 
     @ManyToMany(() => Author, author => author.books)
     @JoinTable()

@@ -6,15 +6,15 @@ export class Author {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ unique: true })
     name: string;
 
-    @Column({ nullable: true })
-    birthdate: Date;
+    // @Column({ nullable: true })
+    // birthdate: Date;
 
     @Column({ nullable: true })
     nationality: string;
   
-    @ManyToMany(() => Book, book => book.authors)
+    @ManyToMany(() => Book, book => book.authors, { cascade: true })
     books: Book[];
 }
