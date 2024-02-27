@@ -44,7 +44,7 @@ export class AuthorService {
     try {
       return await this.authorRepository.find();
     } catch(error) {
-      throw new Error('Failed to fetch products');
+      throw new Error('Failed to fetch authors');
     }
   }
 
