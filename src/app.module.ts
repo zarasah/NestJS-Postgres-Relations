@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CategoryModule } from './category/category.module';
@@ -7,7 +7,7 @@ import { AuthorModule } from './author/author.module';
 import { BookModule } from './book/book.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { GlobalExceptionFilter } from './common/exceptions/exception.filter';
 import { AuthModule } from './auth/auth.module';
 
@@ -40,6 +40,10 @@ import { AuthModule } from './auth/auth.module';
     {
       provide: APP_FILTER,
       useClass: GlobalExceptionFilter
+    },
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe,
     }
   ],
 })

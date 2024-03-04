@@ -11,7 +11,7 @@ export class CategoryService {
     @InjectRepository(Category) private readonly categoryRepository: Repository<Category>
   ) {}
 
-  async create(createCategoryDto: CreateCategoryDto) {
+  async create(createCategoryDto: CreateCategoryDto): Promise<{data: Category}> {
     const existCategory = await this.categoryRepository.findOne({
       where: {
         name: createCategoryDto.name
