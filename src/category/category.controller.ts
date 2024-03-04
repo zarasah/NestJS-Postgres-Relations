@@ -16,9 +16,9 @@ export class CategoryController {
   @ApiResponse({status: 201, type: Category})
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
+  @UsePipes(new ValidationPipe({ transform: true }))
   @Post()
-  @UsePipes(new ValidationPipe())
-  create(@Body() createCategoryDto: CreateCategoryDto) {
+  create(@Body() createCategoryDto: CreateCategoryDto): Promise<{data: Category}> {
     return this.categoryService.create(createCategoryDto);
   }
 
