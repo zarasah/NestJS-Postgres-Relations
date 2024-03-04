@@ -9,6 +9,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { APP_FILTER } from '@nestjs/core';
 import { GlobalExceptionFilter } from './common/exceptions/exception.filter';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import { GlobalExceptionFilter } from './common/exceptions/exception.filter';
         entities: [__dirname + '/**/*.entity{.js, .ts}'],
       }),
       inject: [ConfigService],
-    })
+    }),
+    AuthModule
   ],
   controllers: [AppController],
   providers: [

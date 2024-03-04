@@ -2,9 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, Validation
 import { AuthorService } from './author.service';
 import { CreateAuthorDto } from './dto/create-author.dto';
 import { UpdateAuthorDto } from './dto/update-author.dto';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Author } from './entities/author.entity';
 
+@ApiTags('Author')
 @Controller('author')
 export class AuthorController {
   constructor(private readonly authorService: AuthorService) {}
